@@ -72,13 +72,10 @@ export default {
       var flightYear = this.newFlight.year
       var flightMonth= this.newFlight.month
       var flightDay = this.newFlight.day
-      this.$http.get("https://flight-api-mbynoyjqmf.now.sh/flights&origin="+flightOrigin+"&destination="+flightDest+"&year="+flightYear+"&month="+flightMonth+"&day="+flightDay)
+      axios.get("https://flight-api-mbynoyjqmf.now.sh/flights&origin="+flightOrigin+"&destination="+flightDest+"&year="+flightYear+"&month="+flightMonth+"&day="+flightDay)
         .then(response => {
           this.bestFlight = response.data
           this.returnedResponse = true
-
-          console.log(response.data)
-          console.log(response.data.origin)
         })
     }
   }
