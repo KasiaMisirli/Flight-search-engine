@@ -1,7 +1,6 @@
 <template>
   <div>
     <h4 class="search-below">{{search}}</h4>
-
     <form class="search-form" v-on:submit="getFlightsVueResource" >
       <label class="origin ">origin:</label>
       <select v-model="newFlight.origin">
@@ -25,13 +24,14 @@
       <input type="submit" value="Submit" class="submit-btn" >
     </form>
     <div class="flight-proposed" v-if="returnedResponse">
-      Origin:{{bestFlight.origin}} Destination: {{bestFlight.destination}}
+      Origin: {{bestFlight.origin}} Destination: {{bestFlight.destination}}
       Date: {{bestFlight.year}}.{{bestFlight.month}}.{{bestFlight.day}}
       Time: {{bestFlight.hour}}.{{bestFlight.minute}}
-      Price:<span class="price1"> {{bestFlight.price}}</span>
+      Price: <span class="price1">{{bestFlight.price}}</span>
       Currency: {{bestFlight.currency}}
-
+      <button class="basket" v-on:click="totalPriceCounter">Add to basket</button>
     </div>
+    <div class="tot" v-if="tot">Total: {{tot}}</div>
   </div>
 </template>
 
@@ -41,6 +41,9 @@ export default {
   data(){
     return {
       search: 'search below',
+      tot: null,
+      firstFlight: null,
+      secondFlight: null,
       newFlight: {
         origin: 'Please select',
         destination: 'Please select',
@@ -77,6 +80,16 @@ export default {
           this.bestFlight = response.data
           this.returnedResponse = true
         })
+    },
+    totalPriceCounter: function(){
+      alert("added to basket!")
+      if (parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText) > 0 && parseInt(document.getElementsByClassName('secondFlight')[0].lastElementChild.firstElementChild.innerText) > 0){
+        var firstFlight = parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText)
+        var secondFlight = parseInt(document.getElementsByClassName('secondFlight')[0].lastElementChild.firstElementChild.innerText)
+        console.log(firstFlight)
+        console.log(secondFlight)
+        this.tot = firstFlight + secondFlight
+      }
     }
   }
 }
@@ -120,6 +133,15 @@ input {
 }
 .day {
   display: inline;
+}
+.basket {
+  display: inline;
+}
+.tot {
+  background-color: rgb(210, 210, 106);
+  color: rgb(120, 44, 44);
+  font-size: 20px;
+  padding-right: 20px;
 }
 .submit-btn {
   background-color: #458062;

@@ -2,10 +2,9 @@
   <div id="app">
     <company></company>
     <h1 class="type">departure</h1>
-    <search></search>
+    <search class="firstFlight"></search>
     <h1 class="type">arrival</h1>
-    <search></search>
-
+    <search class="secondFlight"></search>
   </div>
 </template>
 
@@ -52,5 +51,8 @@ export default {
 .type {
   background-color: blanchedalmond;
   color: rgb(162, 162, 38);
+}
+body {
+  background-color: rgb(223, 156, 156);
 }
 </style>
