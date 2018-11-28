@@ -4,13 +4,13 @@
     <form class="search-form" v-on:submit="getFlightsVueResource" >
       <label class="origin ">origin:</label>
       <select v-model="newFlight.origin">
-        <option v-for="option in options" v-bind:value="option">
+        <option v-for="option in options" v-bind:key="option">
           {{option}}
         </option>
       </select>
       <label class="destination">destination:</label>
       <select v-model="newFlight.destination">
-          <option v-for="option in options" v-bind:value="option">
+          <option v-for="option in options" v-bind:key="option">
              {{option}}
           </option>
         </select>
@@ -21,7 +21,7 @@
       <input v-model="newFlight.month" type="number" min="7" max="12">
       <label class="day">day:</label>
       <input v-model="newFlight.day" type="number" min="1" max="31">
-      <input type="submit" value="Submit" class="submit-btn" >
+      <SpinnerButton type="submit" value="Submit" class="submit-btn" ></SpinnerButton>
     </form>
     <div class="flight-proposed" v-if="returnedResponse">
       Origin: {{bestFlight.origin}} Destination: {{bestFlight.destination}}
@@ -29,18 +29,21 @@
       Time: {{bestFlight.hour}}.{{bestFlight.minute}}
       Price: <span class="price1">{{bestFlight.price}}</span>
       Currency: {{bestFlight.currency}}
-      <button class="basket" v-on:click="totalPriceCounter">Add to basket</button>
+      <button class="basket" v-on:click="totalPriceCounter">Add to cart</button>
     </div>
     <div class="tot" v-if="tot">Total: {{tot}}</div>
   </div>
 </template>
 
 <script>
+import SpinnerButton from './spinnerbutton'
 export default {
   name: 'flights',
+  components: { SpinnerButton },
   data(){
     return {
       search: 'search below',
+      buttonname: 'search button',
       tot: null,
       firstFlight: null,
       secondFlight: null,
@@ -82,6 +85,7 @@ export default {
         })
     },
     totalPriceCounter: function(){
+      console.log("running")
       alert("added to basket!")
       if (parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText) > 0 && parseInt(document.getElementsByClassName('secondFlight')[0].lastElementChild.firstElementChild.innerText) > 0){
         var firstFlight = parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText)
@@ -97,20 +101,20 @@ export default {
 </script>
 <style scoped>
 .search-below{
-  background: rgb(206, 157, 157);
-  color:rgb(123, 73, 173);
+  /* background: rgb(206, 157, 157); */
+  /* color:rgb(123, 73, 173); */
 }
 .search-form {
-  background:rgb(180, 154, 199);
-  color: rgb(120, 44, 44);
+  /* background:rgb(180, 154, 199); */
+  /* color: rgb(120, 44, 44); */
   font-weight: 700;
   height: 50px;
   padding-top: 10px;
 }
 .flight-proposed {
   font-size: 1em;
-  color: rgb(35, 35, 150);
-  background-color: lightblue;
+  /* color: rgb(35, 35, 150); */
+  /* background-color: lightblue; */
   font-weight: 700;
   padding-top: 10px;
   height: 50px;
@@ -138,14 +142,15 @@ input {
   display: inline;
 }
 .tot {
-  background-color: rgb(210, 210, 106);
-  color: rgb(120, 44, 44);
+  background-color: white;
+  /* color: rgb(120, 44, 44); */
   font-size: 20px;
   padding-right: 20px;
 }
 .submit-btn {
   background-color: #458062;
-  color:blanchedalmond;
+  /* color:blanchedalmond; */
   font-weight:700;
+  display: inline;
 }
 </style>

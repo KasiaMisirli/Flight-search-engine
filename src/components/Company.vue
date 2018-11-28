@@ -5,8 +5,10 @@
   </div>
 </template>
 <script>
+import SpinnerButton from './spinnerbutton'
 export default {
   name: 'company',
+  components: { SpinnerButton },
   data(){
     return {
       name: 'flights.com',
@@ -17,9 +19,9 @@ export default {
 </script>
 <style scoped>
 .name{
-  color: rgb(60, 85, 10);
+  /* color: rgb(60, 85, 10); */
   font-weight: 700;
-  background-color: rgba(196, 105, 105, 0.705);
+  /* background-color: rgba(196, 105, 105, 0.705); */
 }
 </style>
 

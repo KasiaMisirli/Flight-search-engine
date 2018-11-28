@@ -15,25 +15,21 @@ import Search from './components/search'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueMq from 'vue-mq'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import SpinnerButton from './components/spinnerbutton'
 
+Vue.component('SpinnerButton', { /* ... */ })
 Vue.use(VueAxios, axios);
+Vue.use(SpinnerButton);
 Vue.use(BootstrapVue);
-Vue.use(VueMq, {
-  breakpoints: {
-    sm: 450,
-    md: 1250,
-    lg: Infinity,
-  }
-})
 
 export default {
   name: 'App',
   components: {
     Company,
-    Search
+    Search,
+    SpinnerButton
   }
 }
 </script>
@@ -46,13 +42,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: antiquewhite;
 }
 .type {
   background-color: blanchedalmond;
-  color: rgb(162, 162, 38);
 }
 body {
-  background-color: rgb(223, 156, 156);
+  background-color: mistyrose;
 }
 </style>
