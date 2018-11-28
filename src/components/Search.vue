@@ -85,8 +85,6 @@ export default {
         })
     },
     totalPriceCounter: function(){
-      console.log("running")
-      alert("added to basket!")
       if (parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText) > 0 && parseInt(document.getElementsByClassName('secondFlight')[0].lastElementChild.firstElementChild.innerText) > 0){
         var firstFlight = parseInt(document.getElementsByClassName('firstFlight')[0].lastElementChild.firstElementChild.innerText)
         var secondFlight = parseInt(document.getElementsByClassName('secondFlight')[0].lastElementChild.firstElementChild.innerText)
